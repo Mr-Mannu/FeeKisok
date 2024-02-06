@@ -1,0 +1,30 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<div class="menu-wrapper">
+		<div class="layout-menu-container">
+			<h:form id="menuform">
+				<div class="layout-profile">
+					<div class="layout-profile-button" href="#">
+						<span class="profile-image-icons"> <p:graphicImage
+								name="imagess/cblogo.png" styleClass="cover-image"
+								style="width: 190px !important;" library="pandora-layout" />
+						</span> <span class="profile-info-button"
+							style="border-top: solid 1px black; border-bottom: solid 1px black; margin: 0 0 !important;">
+							<span class="layout-profile-userinfo"> <span
+								class="layout-profile-name">#{schoolTop.fullName}</span> <span
+								class="layout-profile-role">#{schoolTop.username}</span>
+						</span>
+						</span>
+					</div>
+
+				</div>
+				<ui:include src="./StudentMenu.xhtml"></ui:include>
+			</h:form>
+		</div>
+	</div>
+
+</ui:composition>

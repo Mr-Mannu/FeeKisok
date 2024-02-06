@@ -1,0 +1,135 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <div class="layout-rightpanel">
+        <div class="rightpanel-wrapper">
+            <div class="rightpanel-header">
+                <div class="cover">
+                    <p:graphicImage name="images/rightpanel/asset-cover.jpg" styleClass="cover-image"
+                                    library="pandora-layout"/>
+                    <p:graphicImage style="border-radius: 50%;" value="#{rightAll.url}"  styleClass="avatar-image"
+                                    />
+                </div>
+            </div>
+
+            <div class="rightpanel-summary">
+                <h4 style="margin-top: 20px;">#{rightAll.fullName}</h4>
+                <div class="numbers-row">
+                    <div class="number">
+                        <h5>School Name</h5>
+                        <span>#{rightAll.schName}</span>
+                    </div>
+                    
+                </div>   
+                <div class="numbers-row">
+                    <div class="number">
+                        <h5>Designation</h5>
+                        <span>#{rightAll.type}</span>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="rightpanel-graph">
+                <h4>SETTINGS</h4>
+
+                <div class="graph-content">
+                    <ul>
+                     <li style="    padding: 6px 0;">
+                     <a>
+                       		 <p:commandLink style="    color: #4142e2;" action="#{schoolTop.changeSession}">
+                               
+                                <span style="color:#000000;"><span ></span>Session : #{sideMenuBean.session}</span>
+                             </p:commandLink>
+                             </a>
+                        </li>
+                        <p:outputPanel style="    padding: 6px 0;" rendered="#{sideMenuBean.showBackToMaster}">
+                            <li role="menuitem">
+                                <a href="madminPageDynamic.xhtml">
+                                   
+                                    <span style="color:#000000;"><span ></span>Back To Master</span>
+                                </a>
+                            </li>
+                        </p:outputPanel>
+                        
+                        
+                        <p:outputPanel style="    padding: 6px 0;" rendered="#{sideMenuBean.showAdmin}">
+                            <li role="menuitem">
+                                <a href="timeline.xhtml">
+                                    
+                                   <span style="color:#000000;"><span ></span>Timeline</span>
+                                </a>
+                            </li>
+                        </p:outputPanel>
+                        <p:outputPanel style="    padding: 6px 0;" rendered="#{sideMenuBean.showAdmin}">
+                    		<li role="menuitem">
+                            <a href="messageSchoolHistory.xhtml">
+                            
+                                <span style="color:#000000;"><span ></span>Message Balance-: #{sideMenuBean.messageBalanace}
+									</span>
+                            </a>
+                        </li>
+                        </p:outputPanel>
+                        
+                        <p:outputPanel style="    padding: 6px 0;" rendered="#{sideMenuBean.showAdmin &amp;&amp; sideMenuBean.list.whatsappApi ne ''}">
+                    		<li role="menuitem">
+                            <a href="wappSchoolHistory.xhtml">
+                            
+                                <span style="color:#000000;"><span ></span>Whatsapp Balance-: #{sideMenuBean.wappBalance}
+									</span>
+                            </a>
+                        </li>
+                        </p:outputPanel>
+                        
+                        <p:outputPanel style="    padding: 6px 0;" rendered="#{sideMenuBean.manageTracking}">
+	                        <li role="menuitem">
+	                            <p:commandLink action="#{sideMenuBean.tracking}">
+	                              
+	                                <span style="color:#000000;"><span ></span>Track Buses</span>
+	                            </p:commandLink>
+	                        </li>
+                        </p:outputPanel>
+                        
+                        <p:outputPanel style="    padding: 6px 0;" rendered="#{sideMenuBean.list.schid eq '304' &amp;&amp; sideMenuBean.userType.toLowerCase() eq 'admin'}">
+	                        <li role="menuitem">
+	                            <p:commandLink action="trackBlackboxGPS.xhtml?faces-redirect=true">
+	                            
+	                              <span style="color:#000000;"><span ></span>Track Buses</span>
+	                            </p:commandLink>
+	                        </li>
+                        </p:outputPanel>
+                       
+                        <li role="menuitem" style="    padding: 6px 0;">
+                            <a href="changePassWord.xhtml">
+                                
+                                <span style="color:#000000;"><span ></span>Change Password</span>
+                            </a>
+                        </li>
+                        
+                        <p:outputPanel style="    padding: 6px 0;" rendered="#{sideMenuBean.logoutchalkbox}">
+	                        <li role="menuitem">
+	                            <a href="ChalkboxLogin.xhtml">
+	                          
+	                                <span style="color:#000000;"><span ></span>Logout</span>
+	                            </a>
+	                        </li>
+                        </p:outputPanel>
+                        
+                        <p:outputPanel style="    padding: 6px 0;" rendered="#{sideMenuBean.master}">
+	                        <li role="menuitem">
+	                            <p:commandLink action="#{sideMenuBean.backToMaster}">
+	                           
+	                               <span style="color:#000000;"><span ></span>Back To Master</span>
+	                            </p:commandLink>
+	                        </li>
+                        </p:outputPanel>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</ui:composition>

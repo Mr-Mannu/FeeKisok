@@ -1,0 +1,59 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <div class="layout-rightpanel">
+        <div class="rightpanel-wrapper">
+            <div class="rightpanel-header">
+                <div class="cover">
+                    <p:graphicImage name="images/rightpanel/asset-cover.jpg" styleClass="cover-image"
+                                    library="pandora-layout"/>
+                   <p:graphicImage style="border-radius: 50%;" name = "imagess/login/icon-login.svg" library="pandora-layout"  styleClass="avatar-image"
+                                    />
+                </div>
+            </div>
+            <div class="rightpanel-summary">
+                <h4 style="margin-top: 20px;">#{rightStudent.fullName}</h4>
+                <div class="numbers-row">
+                    <div class="number">
+                        <h5>Mobile Number </h5>
+                        <span>#{rightStudent.username}</span>
+                    </div>
+                    
+                </div>   
+                <div class="numbers-row">
+                    <div class="number">
+                        <h5>User</h5>
+                        <span>PARENTS</span>
+                    </div>
+                    
+                </div>
+            </div>
+             <div class="rightpanel-graph">
+                <h4>SETTINGS</h4>
+
+                <div class="graph-content">
+                    <ul>
+                     <li style="    padding: 6px 0;">
+                    	<a href="studentChangePassword.xhtml">
+	                                
+	                                <span style="color:#000000;">Change PIN</span>
+	                            </a>
+                        </li>
+                            <li role="menuitem">
+                              <a href="feeKiosk.xhtml">
+	                               
+	                                <span style="color:#000000;">Logout</span>
+	                            </a>
+                            </li>
+                      
+                    </ul>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+
+</ui:composition>

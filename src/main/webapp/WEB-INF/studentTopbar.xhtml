@@ -1,0 +1,59 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+});
+
+function check(portal){
+	var url = window.location.href;
+	var urlArr = url.split("/");
+	var baseUrl = "";
+	for (let i = 0; i &lt; urlArr.length-1; i++) {
+		baseUrl = baseUrl.concat(urlArr[i],"/");
+	}
+	if(portal == "logOut"){
+		baseUrl = baseUrl.concat("feeKiosk.xhtml");
+	}else if(portal == "home"){
+		baseUrl = baseUrl.concat("homePage.xhtml");
+	}
+	window.location.replace(baseUrl);
+}
+</script>
+	<div class="layout-topbar">
+		<div class="layout-topbar-wrapper">
+			<div class="layout-topbar-left" style="margin-top: 10px;">
+				<div class="menu-button" style="background-color: #4E52A700 !important; top: 30px !important;">
+
+					<a href="#" 
+						onclick="check('home');"> <i class="pi pi-home"  style="font-size: 35px;
+width: 20px;
+color: white;"/>
+					</a>
+				</div>
+				<div id="logolink" class="layout-topbar-logo">
+
+					<p:graphicImage name="images/cblogowhite.png"
+						library="pandora-layout"
+						style="height:55px;width: 250px !important;" />
+
+				</div>
+			</div>
+			<div class="layout-topbar-right">
+				<div class="layout-topbar-actions"
+					style="justify-content: center !important;">
+
+					<LABEL style="color: white; font-size: x-large;">Fee-Kiosk</LABEL>
+				</div>
+			</div>
+			<a href="#" onclick="check('logOut');" class="layout-rightpanel-button"> <i
+				class="pi pi-power-off"  style="font-size: 30px !important;
+width: 76px !important;
+height: 72px !important;"/>
+			</a>
+		</div>
+	</div>
+</ui:composition>

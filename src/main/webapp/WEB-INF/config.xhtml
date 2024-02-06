@@ -1,0 +1,47 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<script>
+    
+    function check(portal){
+    	var url = window.location.href;
+    	var urlArr = url.split("/");
+    	var baseUrl = "";
+    	for (let i = 0; i &lt; urlArr.length-1; i++) {
+    		baseUrl = baseUrl.concat(urlArr[i],"/");
+    	}
+    	if(portal == "logOut"){
+    		baseUrl = baseUrl.concat("feeKiosk.xhtml");
+    	}else if(portal == "home"){
+    		baseUrl = baseUrl.concat("homePage.xhtml");
+    	}
+    	window.location.replace(baseUrl);
+    }
+    </script>
+	<style>
+body .layout-config .layout-config-content .layout-config-button {
+	width: 100px !important;
+	height: 100px !important;
+	line-height: 98px !important;
+	left: -100px !important;
+	color: #B52121 !important;
+}
+</style>
+
+
+	<div class="layout-config">
+		<div class="layout-config-content">
+			<a href="#" class="layout-config-button" onclick="check('logOut');"> <i
+				class="pi pi-power-off" />
+			</a>
+			<a href="#" class="layout-config-button" style="top: 32%;color:#1BE715 !important" onclick="check('home');"> <i
+				class="pi pi-home" />
+			</a>
+		</div>
+		
+	</div>
+	
+	
+</ui:composition>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<f:loadBundle var="regexVar" basename="myProperties" />
+<h:head>
+	<f:facet name="first">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+	</f:facet>
+	<title>Welcome to Chalkbox</title>
+	<h:outputScript name="js/layout.js" library="pandora-layout" />
+
+	<script>
+		function checkLoginSpaces() {
+
+			var stopp = document.getElementById("form:loginid").value;
+			stopp = stopp.trim();
+			document.getElementById("form:loginid").value = stopp;
+
+		}
+	</script>
+<style>
+html {
+	overflow-y: auto;
+	background-color: transparent;
+}
+
+::-webkit-scrollbar {
+	width: 5px;
+}
+
+::-webkit-scrollbar-track-piece {
+	background-color: #ffffff;
+	-webkit-border-radius: 16px;
+}
+
+::-webkit-scrollbar-thumb:vertical {
+	height: 50px;
+	background-color: #5f5f5f;
+	border: 1px solid #eee;
+	-webkit-border-radius: 6px;
+}
+
+body .content {
+	display: flex;
+	align-content: center;
+	justify-content: center;
+}
+
+body .text_shadows {
+	text-shadow: 3px 3px 0 var(- -color-secondary), 6px 6px 0
+		var(- -color-tertiary), 9px 9px var(- -color-quaternary), 12px 12px 0
+		var(- -color-quinary);
+	font-family: bungee, sans-serif;
+	font-weight: 400;
+	text-transform: uppercase;
+	font-size: calc(2rem + 5vw);
+	text-align: center;
+	margin: 0;
+	color: var(- -color-primary); //
+	color: transparent; //
+	background-color: white; //
+	background-clip: text;
+	animation: shadows 1.2s ease-in infinite, move 1.2s ease-in infinite;
+	letter-spacing: 0.4rem;
+}
+
+
+@keyframes shadows {
+  0% {
+    text-shadow: none;
+  }
+  10% {
+    text-shadow: 3px 3px 0 var(--color-secondary);
+  }
+  20% {
+    text-shadow: 3px 3px 0 var(--color-secondary),
+      6px 6px 0 var(--color-tertiary);
+  }
+  30% {
+    text-shadow: 3px 3px 0 var(--color-secondary),
+      6px 6px 0 var(--color-tertiary), 9px 9px var(--color-quaternary);
+  }
+  40% {
+    text-shadow: 3px 3px 0 var(--color-secondary),
+      6px 6px 0 var(--color-tertiary), 9px 9px var(--color-quaternary),
+      12px 12px 0 var(--color-quinary);
+  }
+  50% {
+    text-shadow: 3px 3px 0 var(--color-secondary),
+      6px 6px 0 var(--color-tertiary), 9px 9px var(--color-quaternary),
+      12px 12px 0 var(--color-quinary);
+  }
+  60% {
+    text-shadow: 3px 3px 0 var(--color-secondary),
+      6px 6px 0 var(--color-tertiary), 9px 9px var(--color-quaternary),
+      12px 12px 0 var(--color-quinary);
+  }
+  70% {
+    text-shadow: 3px 3px 0 var(--color-secondary),
+      6px 6px 0 var(--color-tertiary), 9px 9px var(--color-quaternary);
+  }
+  80% {
+    text-shadow: 3px 3px 0 var(--color-secondary),
+      6px 6px 0 var(--color-tertiary);
+  }
+  90% {
+    text-shadow: 3px 3px 0 var(--color-secondary);
+  }
+  100% {
+    text-shadow: none;
+  }
+}
+
+@keyframes move {
+  0% {
+    transform: translate(0px, 0px);
+  }
+  40% {
+    transform: translate(-12px, -12px);
+  }
+  50% {
+    transform: translate(-12px, -12px);
+  }
+  60% {
+    transform: translate(-12px, -12px);
+  }
+  100% {
+    transform: translate(0px, 0px);
+  }
+}
+
+
+</style>
+</h:head>
+<h:body styleClass="login-body">
+	<div class="login-topbar" style="place-content: center;">
+
+		<h:link>
+			<p:graphicImage name="images/cblogo.png" library="pandora-layout"
+				style="width: 320px;
+    height: 90px;" />
+		</h:link>
+
+	</div>
+	<h:form id="form">
+		<p:growl showDetail="true"></p:growl>
+		<div class="login-wrapper">
+			<div class="login-panel">
+				<div class="login-title">
+					<h4>Welcom to ChalkBox Fee kiosk</h4>
+					<span> Please verify the PIN </span>
+				</div>
+				<div class="login-forms-wrapper">
+					<div class="form-tabs">
+						<div class="tab tab-1 active-tab">Verify PIN</div>
+					</div>
+					<div class="login-forms">
+						<div class="login-form login">
+							<div class="form-group">
+								<span>ENTER PIN</span>
+								<p:inputText id="loginid" value="#{feepinBean.pin}"
+									required="true" requiredMessage="Please Enter PIN" type="password"
+									onkeyup="checkLoginSpaces()" placeholder="Enter your PIN here">
+									<p:keyFilter regEx="/[0-9_-.]/i"></p:keyFilter>
+								</p:inputText>
+							</div>
+							<div class="form-footer">
+								<div class="ui-g-12 ui-sm-6 ui-md-6">
+									<p:commandButton aria-hidden="true" value="Verify"
+										update=":form" action="#{feepinBean.check}" />
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+			
+		<div class="login-image"
+				style="background-image: url(#{resource['pandora-layout:imagess/login/login3new.png']}); background-size: cover;background-repeat: no-repeat;">
+
+			</div>
+		</div>
+
+	</h:form>
+	<h:form id="commonDia" style="overflow:hidden">
+		<p:dialog header="#{feepinBean.header}" width="400"
+			widgetVar="commonDialog" modal="true" showEffect="fade"
+			hideEffect="fade" resizable="false" closable="false"
+			closeOnEscape="false" style="text-align: center;">
+			<center>
+
+				<br></br>
+
+				<div class="content">
+					<p:outputLabel styleClass="text_shadows"
+						value="#{feepinBean.msg}"
+						style="font-size:14px;font-weight: bold;color:red;" />
+
+				</div>
+			</center>
+			<br></br>
+			<center>
+				<p:commandButton value="Close" action="#{feepinBean.skip}"
+					update="commonDia" style="width: 150px;" />
+
+			</center>
+		</p:dialog>
+	</h:form>
+
+
+	<p:ajaxStatus onstart="PF('statusDialog').show()"
+		onsuccess="PF('statusDialog').hide()" />
+	<p:dialog modal="true" widgetVar="statusDialog" resizable="false"
+		showHeader="false">
+		<center>
+			<!-- <i class="fa fa-circle-o-notch fa-5x fa-spin ajax-loader"></i> -->
+			<p:graphicImage value="loader2.gif" height="100" width="100" />
+		</center>
+		<!-- <center>
+			<h3>Please Wait...</h3>
+		</center> -->
+	</p:dialog>
+	<h:outputStylesheet
+		name="css/layout-#{guestPreferences.layoutPrimaryColor}.css"
+		library="pandora-layout" />
+
+</h:body>
+
+</html>

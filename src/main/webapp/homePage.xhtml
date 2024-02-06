@@ -1,0 +1,272 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:po="http://primefaces.org/pandora"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	template="/WEB-INF/studentTemplate.xhtml">
+	<ui:define name="title">Student Dashboard</ui:define>
+
+	<style type="text/css">
+.jqplot-xaxis-label, .jqplot-yaxis-label, .jqplot-y2axis-label,
+	.jqplot-x2axis-label {
+	color: #757575;
+}
+
+table.jqplot-table-legend {
+	background-color: #ffffff;
+	color: #757575;
+	border-color: #F5F5F5;
+}
+
+.inactiveLink {
+	pointer-events: none;
+	cursor: default;
+}
+</style>
+
+
+	<ui:define name="content">
+		<div class="layout-dashboard">
+			<p:imageSwitch effect="shuffle" widgetVar="switcher"
+				id="manuelSwitcher" slideshowAuto="false" style="left: -16px !important;">
+				<ui:repeat var="x" value="#{side.list}">
+					<div id="student-#{x.serialNum}"
+						style="padding: 8.5px; border-radius: 20px; border-color: darkgray;width: 780.6px !important;box-shadow: 0px 0px 11px 4px #02020294;
+						left:-16px !important;position: relative !important;
+height: 1070.2px !important; min-width: 780.6px !important;
+min-height: 1070.2px !important;
+					background-image: url(#{resource['pandora-layout:images/fee_back.png']}); background-size: cover;background-repeat: no-repeat;
+					">
+						<p:commandButton
+							rendered="#{side.list.size() eq '1' ? false : true}"
+							type="button" onclick="PF('switcher').previous()" id="prev"
+							icon="pi pi-chevron-left" styleClass="mr-2 mb-3 float-Btn"
+							style="float: inline-start;left: 10px;" />
+						<p:commandButton
+							rendered="#{side.list.size() eq '1' ? false : true}"
+							type="button" onclick="PF('switcher').next()"
+							icon="pi pi-chevron-right" id="next"
+							styleClass="mr-2 mb-3 float-Btn"
+							style="float: inline-end;right: 10px;" />
+						<div class="p-grid" style="background-color: #ffffffb5;">
+
+							<div class="p-col-12"
+								style="display: flex; justify-content: center; margin-top: 10px;">
+
+								<div class="p-grid  p-md-9"
+									style="box-shadow: 0px 0px 11px 4px #02020294; border-radius: 15px; background-color: #dbdbdf;">
+
+									<div class="p-col-12">
+										<div class="card profile">
+											<div class="profile-header">
+												<div class="profile-image">
+													<p:outputPanel
+														style="display:flex;justify-content: center;"
+														rendered="#{x.gender eq 'Male' ? true : false}">
+
+														<div
+															style="animation: mymove 5s !important; position: absolute;">
+															<p:graphicImage style="width: 140px;height: 130px;"
+																name="images/crown.png" library="pandora-layout" />
+														</div>
+
+														<p:graphicImage styleClass="center g-image"
+															rendered="#{x.student_image ne '' ? true : false}"
+															value="#{x.student_image}" />
+
+														<p:graphicImage styleClass="center g-image"
+															rendered="#{x.student_image eq '' ? true : false}"
+															name="images/avatar.svg" library="pandora-layout" />
+													</p:outputPanel>
+													<p:outputPanel
+														style="display:flex;justify-content: center;"
+														rendered="#{x.gender eq '' ? true : false}">
+
+														<div
+															style="animation: mymove 5s !important; position: absolute;">
+															<p:graphicImage style="width: 140px;height: 130px;"
+																name="images/crown.png" library="pandora-layout" />
+														</div>
+
+														<p:graphicImage styleClass="center g-image"
+															rendered="#{x.student_image eq '' ? true : false}"
+															name="images/avatar.svg" library="pandora-layout" />
+													</p:outputPanel>
+													<p:outputPanel
+														style="display:flex;justify-content: center;"
+														rendered="#{x.gender eq 'Female' ? true : false}">
+														<div
+															style="animation: mymove 5s !important; position: absolute;">
+															<p:graphicImage style="width: 140px;height: 130px;"
+																name="images/crown.png" library="pandora-layout" />
+														</div>
+														<p:graphicImage styleClass="center g-image"
+															rendered="#{x.student_image ne '' ? true : false}"
+															value="#{x.student_image}" />
+
+														<p:graphicImage styleClass="center g-image"
+															rendered="#{x.student_image eq '' ? true : false}"
+															name="images/woman.svg" library="pandora-layout" />
+													</p:outputPanel>
+
+
+												</div>
+												<div class="profile-info">
+													<h4>#{x.fullName}</h4>
+													<span class="span-text"><i
+														class="fa-solid fa-school"></i> #{x.schoolName}</span>
+												</div>
+											</div>
+
+											<div class="p-col-12">
+												<div class="card event event-1 side-1" style="height: 40px;">
+													<div class="event-text">
+														<h4>Class - Section</h4>
+													</div>
+													<div class="event-attendees">
+														<div class="event-text">
+															<h4>#{x.className}</h4>
+														</div>
+													</div>
+
+												</div>
+											</div>
+											<div class="p-col-12">
+												<div class="card event event-2 side-2" style="height: 40px;">
+													<div class="event-text">
+														<h4>Father's Name</h4>
+													</div>
+													<div class="event-attendees">
+														<div class="event-text">
+															<h4>#{x.fathersName}</h4>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="p-col-12">
+												<div class="card event event-3 side-3" style="height: 40px;">
+													<div class="event-text">
+														<h4>Mother's Name</h4>
+													</div>
+													<div class="event-attendees">
+														<div class="event-text">
+															<h4>#{x.motherName}</h4>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="p-col-12">
+												<div class="card event event-4 side-4" style="height: 40px;">
+													<div class="event-text">
+														<h4>Phone Number</h4>
+													</div>
+													<div class="event-attendees">
+														<div class="event-text">
+															<h4>#{x.fathersPhone}</h4>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="p-col-12">
+										<div class="card event event-1">
+											<div class="event-text">
+												<h4>Pay Fees</h4>
+											</div>
+											<div class="event-attendees" style="width: 30%;">
+												<div style="width: 100%;">
+													<p:commandButton styleClass="btn-1 btn animate-1"
+														action="#{side.redirectPayment(x)}" value="Proceed"></p:commandButton>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="p-col-12">
+										<div class="card event event-2">
+											<div class="event-text">
+												<h4>Detailed History</h4>
+											</div>
+											<div class="event-attendees" style="width: 30%;">
+												<div style="width: 100%;">
+													<p:commandButton styleClass="btn-2 btn animate-2"
+														action="#{side.checkHistory(x)}" value="Proceed"></p:commandButton>
+												</div>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+							</div>
+							<div class="p-col-12 p-md-6" style="border-radius: 20px;">
+								<div class="card statistics" style="height: 100%;">
+									<div class="statistics-header">
+										<h4>Last Five Transactions</h4>
+									</div>
+									<p:outputPanel rendered="#{x.first}">
+										<ui:repeat var="fees" value="#{x.showFee}">
+											<div class="p-col-12">
+												<div class="card event event-#{fees.srno}">
+													<div class="event-text">
+														<h4>₹ #{fees.amount} of #{fees.installmentName} Month</h4>
+														<span class="span-text">#{fees.feeDateStr} by
+															#{fees.paymentmode}</span>
+													</div>
+													<div class="event-attendees" style="width: 38%;">
+														<div style="width: 100%;">
+															<span class="btn-#{fees.srno} recipt"
+																style="padding: 2px;"> #{fees.reciptno}</span>
+														</div>
+													</div>
+												</div>
+											</div>
+										</ui:repeat>
+									</p:outputPanel>
+									<p:outputPanel rendered="#{x.second}" style="height: 93%;">
+										<div class="p-col-12" style="height: 100%;">
+											<div class="card survey">
+												<p:graphicImage name="images/NoDataFound.png"
+													library="pandora-layout" style="height: 100%;" />
+											</div>
+										</div>
+									</p:outputPanel>
+								</div>
+							</div>
+							<div class="p-col-12 p-md-6" style="border-radius: 20px;">
+								<div class="card statistics">
+									<div class="statistics-header">
+										<h4>Total Collection</h4>
+									</div>
+
+									<div class="stats">
+										<div class="stat stat-1">
+											<p:donutChart model="#{x.donutModel}"
+												style="width: 100%; height: 334px;" />
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</ui:repeat>
+			</p:imageSwitch>
+
+			<h:form id="ajaxDia" style="overflow:hidden">
+				<p:dialog modal="true" widgetVar="statusDialog" resizable="false"
+					showHeader="false">
+					<center>
+						<!-- <i class="fa fa-circle-o-notch fa-5x fa-spin ajax-loader"></i> -->
+						<p:graphicImage value="loader2.gif" height="100" width="100" />
+					</center>
+					<!-- <center>
+			<h3>Please Wait...</h3>
+		</center> -->
+				</p:dialog>
+			</h:form>
+
+		</div>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,65 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:po="http://primefaces.org/pandora"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	template="/WEB-INF/studentTemplate.xhtml">
+	<ui:define name="title">Payment History</ui:define>
+
+	<style type="text/css">
+.jqplot-xaxis-label, .jqplot-yaxis-label, .jqplot-y2axis-label,
+	.jqplot-x2axis-label {
+	color: #757575;
+}
+
+table.jqplot-table-legend {
+	background-color: #ffffff;
+	color: #757575;
+	border-color: #F5F5F5;
+}
+
+.inactiveLink {
+	pointer-events: none;
+	cursor: default;
+}
+</style>
+
+	<ui:define name="content">
+		<div class="layout-dashboard">
+				<div class="p-grid"
+					style="border: solid; border-color: currentcolor; padding: 8.5px; border-radius: 20px; border-color: darkgray;">
+					<div class="p-col-12 p-md-12" style="border-radius: 20px;">
+						<div class="card statistics" style="height: 100%;">
+							<div class="statistics-header" style="display: block;">
+								<h4>Payment History</h4>
+							</div>
+
+							<ui:repeat var="fees" value="#{feeHistory.showFees}">
+							<div class="p-col-12">
+								<div class="card event event-#{fees.srno}">
+									<div class="event-text">
+										<h4> ₹ #{fees.amount} of #{fees.installmentName} Month</h4>
+										<span class="span-text">#{fees.feeDateStr} by #{fees.paymentmode}</span>
+									</div>
+									<div class="event-attendees" style="width:38%;">
+										<div style="width:100%;">
+											<p:commandButton styleClass="btn-#{fees.srno} btn animate-#{fees.srno}"
+												style="float: right;" action="#{feeHistory.duplicateFee}"
+												value="#{fees.reciptno}">
+												<f:setPropertyActionListener
+														target="#{feeHistory.selectedstudent}"
+														value="#{fees}"></f:setPropertyActionListener>
+												</p:commandButton>
+										</div>
+									</div>
+								</div>
+							</div>
+							</ui:repeat>
+						</div>
+					</div>
+				</div>
+		</div>
+	</ui:define>
+</ui:composition>

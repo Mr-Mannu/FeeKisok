@@ -1,0 +1,59 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:po="http://primefaces.org/pandora">
+	<script>
+$(document).ready(function() {
+	function style(y){
+		y.children('.layout-menu-tooltip').remove();
+		let x = y.position().top;
+		let index = y.index();
+		let total = y.parent().children('li').length;
+		let leastNum = total - index;
+		
+		if (total &gt; 8){
+
+			if (leastNum &lt; 5) {
+				let adjust =  (x) - (y.children('ul').height());
+				y.children('ul').css('top',adjust);
+			}else {
+				y.children('ul').css('top',x);
+			}
+		}else {
+			y.children('ul').css('top',x);
+		}
+	}
+	
+	$('.check-1 li').hover(function(){
+		
+		style($(this));
+	});
+	
+	$('.check-1 li').on('click',function(){
+		style($(this));
+		
+	});
+	
+
+  });
+</script>
+<style>
+.layout-menu-bluedark .menu-wrapper .layout-menu-container .layout-menu > li > div .layout-menuitem-text {
+    font-size: medium !important;
+    font-weight: bold;
+}
+.menu-wrapper .layout-menu-container .layout-menu li > a .layout-menuitem-text {
+    font-size: medium;
+}
+</style>
+	<div>
+
+		<po:menu widgetVar="PandoraMenuWidget" styleClass="check-1">
+		
+		</po:menu>
+	</div>
+
+</ui:composition>
